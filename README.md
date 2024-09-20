@@ -1,5 +1,5 @@
 # unity-for-wp
-Simple loader and inicilizer plugin for Unity + WebGL project
+Simple loader and inicilizer plugin for Wordpress + Unity + WebGL project
 
 ## ENG description
 
