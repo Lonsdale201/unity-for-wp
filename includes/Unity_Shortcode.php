@@ -86,7 +86,7 @@ class Unity_Shortcode {
 
         $all_files = glob( $this->build_dir . '/*' );
 
-        error_log("Files found in directory: " . print_r($all_files, true));
+        // error_log("Files found in directory: " . print_r($all_files, true));
 
         foreach ( $all_files as $file ) {
             $filename = basename($file);
