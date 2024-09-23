@@ -73,10 +73,10 @@ Shortcode használata: `[unity]`
 
 1.1 Coming soon:
 
-Canvas height, widht and aspect ratio overwrite via the settings panel
-New js eventlistener when the unity webgl project initialized
-New sample and new jslib + c# (.cs) scripts with new scene loader js event lisner, and more samples
-Plugin updater
+* Canvas height, widht and aspect ratio overwrite via the settings panel
+* New js eventlistener when the unity webgl project initialized
+* New sample and new jslib + c# (.cs) scripts with new scene loader js event lisner, and more samples
+* Plugin updater
 
 
 1.0
