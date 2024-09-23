@@ -68,3 +68,16 @@ hogy milyen néven van prefixelve a fájl nem számít, de ne használj space-t,
 **Figyelj oda hogy kompresszált buildet nem biztos hogy a szervered képes megfelelően kezelni, ilyenkor állítsd vissza a beállítást tömörítetlen verzióban.**
 
 Shortcode használata: `[unity]`
+
+## Changelog
+
+1.1 Coming soon:
+
+Canvas height, widht and aspect ratio overwrite via the settings panel
+New js eventlistener when the unity webgl project initialized
+New sample and new jslib + c# (.cs) scripts with new scene loader js event lisner, and more samples
+Plugin updater
+
+
+1.0
+Initial release
