@@ -71,21 +71,13 @@ Shortcode használata: `[unity]`
 
 ## Changelog
 
-1.1 Coming soon:
-
-* Canvas height, widht and aspect ratio overwrite via the settings panel
-* New js eventlistener when the unity webgl project initialized
-* New sample and new jslib + c# (.cs) scripts with new scene loader js event lisner, and more samples
-* Plugin updater
-
-  
 1.1 - 2024.09.24
 
-Fixed the Deactivation issue
-Added the plugin to the update server
-**Mew settings:** Set your Canvas height,width, and aspect ration
-**New settings option:** You can enable the unfiltered files upload only for the admin for this file types: obj, gltf+json, gltf-binary, mtl
-New Js eventlisner added when the Unity finished the initialization
+* Fixed the Deactivation issue
+* Added the plugin to the update server
+* **Mew settings:** Set your Canvas height,width, and aspect ration
+* **New settings option:** You can enable the unfiltered files upload only for the admin for this file types: obj, gltf+json, gltf-binary, mtl
+* New Js eventlisner added when the Unity finished the initialization
 
 
 1.0
