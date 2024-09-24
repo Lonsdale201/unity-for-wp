@@ -28,16 +28,27 @@ class Unity_Shortcode {
 
     public function render_unity_webgl() {
         wp_enqueue_script( 'unity-webgl-init' );
-        wp_enqueue_script( 'colorchange-sample' ); 
-
+        wp_enqueue_script( 'colorchange-sample' );
+    
+        $options = get_option( 'canvas_settings', [
+            'canvas_width' => '100%',
+            'canvas_height' => '100%',
+            'aspect_ratio' => '16 / 9',
+        ]);
+    
+        $canvas_width = isset( $options['canvas_width'] ) ? esc_attr( $options['canvas_width'] ) : '100%';
+        $canvas_height = isset( $options['canvas_height'] ) ? esc_attr( $options['canvas_height'] ) : '100%';
+        $aspect_ratio = isset( $options['aspect_ratio'] ) ? esc_attr( $options['aspect_ratio'] ) : '16 / 9';
+    
         ob_start();
         ?>
-        <div id="unityContainer" style="width: auto; height: auto">
-            <canvas id="unityCanvas" style="width: 100%; height: 100%;"></canvas>
+        <div id="unityContainer" style="width: auto; height: 100%; aspect-ratio: 16 / 9;">
+            <canvas id="unityCanvas" style="width: <?php echo $canvas_width; ?>; height: <?php echo $canvas_height; ?>; aspect-ratio: <?php echo $aspect_ratio; ?>;"></canvas>
         </div>
         <?php
         return ob_get_clean();
     }
+    
 
     public function enqueue_scripts() {
         $compression_type = get_option( 'compression_type', 'uncompressed' ); // 'uncompressed', 'gzip', 'brotli'
