@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
             streamingAssetsUrl: unityWebGLConfig.streamingAssetsUrl,
             companyName: unityWebGLConfig.companyName,
             productName: unityWebGLConfig.productName,
-            productVersion: unityWebGLConfig.productVersion,
+            productVersion: unityWebGLConfig.productVersion
         };
 
         var canvas = document.getElementById('unityCanvas');
@@ -18,8 +18,11 @@ document.addEventListener('DOMContentLoaded', function () {
             script.src = unityWebGLConfig.loaderUrl;
             script.onload = () => {
                 createUnityInstance(canvas, config).then(function (instance) {
-                    console.log('Unity instance loaded successfully.');
+                    console.log('Unity instance initialized successfully.');
                     window.unityInstance = instance; // Global unity instance
+
+                    var unityInitializedEvent = new CustomEvent('unityInitialized', { detail: { unityInstance: instance } });
+                    document.dispatchEvent(unityInitializedEvent);
                 }).catch(function (error) {
                     console.error('Failed to load Unity instance', error);
                 });
