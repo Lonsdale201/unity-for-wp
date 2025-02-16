@@ -1,84 +1,113 @@
-# unity-for-wp
-Simple loader and inicilizer plugin for Wordpress + Unity + WebGL project
+# Unity for WP
 
-## ENG description
+Stable tag: 2.0
 
-**Instructions:**
+**WordPress Plugin for Unity WebGL Projects**
 
-Copy your Unity build files into the unitybuild folder.
-File names do not matter, as the plugin automatically detects them. However, the build files must be placed inside the Build folder.
-The plugin supports loading both Gzip and Brotli formats. You can toggle between these formats in the plugin settings.
+## Overview
 
-*This is a standard WordPress plugin, simply install it in zip format after downloading the project from github.*
+**Unity for WP** is a WordPress plugin that simplifies the integration of Unity WebGL builds into your WordPress site. It automates the setup process and allows you to easily upload, manage, and initialize multiple Unity WebGL builds.
 
-**Settings:**
-You can access the plugin settings in WordPress under:
-WP Admin > Settings > Unity WebGL
+The plugin handles everything—your job is to build your Unity WebGL project and upload the zipped build through the plugin interface.
 
-The plugin includes a demo build from Unity as a sample.
-Use the shortcode to embed the Unity WebGL project:
+**Important:**  
+Make sure you zip the contents of your build folder directly, **not the parent folder**. The system will not work if an extra directory wraps your build files.
 
-`[unity]`
+**Example of how to zip your build:**  
+[Build Example](https://prnt.sc/EqE7U-nJJeQ9)
 
-The initialization JavaScript file is only loaded when the shortcode is present on the page.
-Additionally, there is a demo script located in the assets/samples folder.
+---
 
-**Example Usage:**
+## Features
 
-* Place a button using any page builder or native HTML and assign it the following ID: button1.
-* In the demo scene, there is a cube. Clicking the button will change the cube's color to a random color.
-  
-**Camera Controls:**
+- **Multiple Build Support**: Upload and manage multiple Unity WebGL builds on the same site.
+- **Automatic Folder Structure**: Each uploaded build is extracted into its own directory within the `unitybuild` folder (e.g., `ubuild_1`, `ubuild_2`, etc.).
+- **Build Management**: View all uploaded builds in the **Builds** tab under the plugin settings. You can delete or re-upload individual builds at any time.
+- **Shortcode Support**: Embed Unity builds using a simple shortcode with customizable options.
 
-* Rotate the camera by holding the left mouse button.
-* Move the camera using the traditional WASD keys.
-* Zoom in and out with the mouse scroll wheel.
+---
 
-**Troubleshooting:**
+## How to Use
 
-If your server cannot properly handle compressed builds (Gzip or Brotli), switch the plugin settings to use the uncompressed format.
+### Uploading Your Build
 
-## MAGYAR leírás
+1. Create a Unity WebGL build.
+2. Zip the build files directly (do **not** include the parent folder).
+3. Upload the zipped build through the plugin’s interface.
+4. The plugin will extract the build and assign it a unique ID (e.g., `ubuild_1`).
 
-Ez a bővítmény a Unity-ban készített webGL projekteket képes betölteni. (egy időben csak egyet)
-Ez egy hagyományos WordPress bővítmény, telepítsd egyszerűen zip formátumban, miután letöltötted a projektet innen a githubról.
+---
 
+## Shortcode Usage
 
-a build fájlokat bele kell másolnod a(z) unitybuild nevű mappába. A fájl név nem számít, mert automatikusan felismeri őket, de a cél fájlok a Build mappában kell, hogy legyenek. 
-Támogatja a Gzip és Brutti formátumot is betöltésnél. Ezt a bővítmény beállításaiban tudod átállítani.
+To embed a Unity WebGL build, use the following shortcode: `[unity id="ubuild_1"]`
 
-*wpadmin/settings/unity webGL*
+### Shortcode Parameters
 
- A bővítmény tartalmaz egy demo build-et unity ből.
+- `id` (required): Specifies the build ID to embed.
+- `autostart` (optional): If set to `false`, the Unity WebGL project will only start when a button is clicked.
+- `width` and `height` (optional): Customize the size of the Unity WebGL canvas. You can use pixels or percentages.
 
-A bővítmény shortcode segítségével hívjba be az Unity webGL-t
-A kapcsolódó inicializációs js fájl-t csak akkor tölti be ah az oldalon a shortcode meg van adva.
-Az assets/samples mappában van egy demó script. A shortcode mellé helyezz el egy gombot (bármilyen page builder), vagy natív html segítségével. A gombnak adj meg ezt az ID-t: button1
+**Examples:** `[unity id="ubuild_1" autostart="false" width="100%" height="50vh"]`
 
-A demó jelenetben egy kocka van elhelyezve, a gomb segítségével random tudod színezni.
+---
 
-A demóban ezen kívül tudod a kamerát forgatni, amíg lenyomva tartod a bal egérgombot.
-A hagyományos WASD-el tudod mozgatni a kamerát, görgővel zoomolhatsz
+## Custom Button and Placeholder
 
-Fontos, a build-et mindig a plugin mappájában található unitybuild mappába helyezd el
-A fájlokat mindig így fogja betölteni: *\unitybuild\Build*
+If `autostart` is set to `false`, you can provide a custom button text and a placeholder image in the plugin settings. Once the user clicks the button, the placeholder and button will disappear, and the Unity WebGL project will initialize.
 
-hogy milyen néven van prefixelve a fájl nem számít, de ne használj space-t, mert úgy nem képes megfelelően betölteni.
+---
 
-**Figyelj oda hogy kompresszált buildet nem biztos hogy a szervered képes megfelelően kezelni, ilyenkor állítsd vissza a beállítást tömörítetlen verzióban.**
+## JavaScript Event Listener
 
-Shortcode használata: `[unity]`
+The plugin provides a custom event listener that fires once the Unity instance is initialized.
+
+**Example:**
+
+```javascript
+document.addEventListener("unityInitialized", function (e) {
+  // e.detail.unityInstance contains the Unity instance
+  // e.detail.buildId contains the ID of the initialized build
+  console.log("Unity initialized:", e.detail);
+});
+```
+
+## Future Plans
+
+- Dedicated GitHub Repository for jslibs, editor extensions, and demo builds.
+- Scene Loading Events: Code samples to handle scene load events will be added.
+- Enhanced Build Management Interface.
+
+## Troubleshooting
+
+- Ensure your server supports Gzip or Brotli compression for optimal performance.
+- If compressed builds are not working, switch to an uncompressed version in the plugin settings.
 
 ## Changelog
 
+2.0 - 2025.02.16
+
+- Multiple Build support
+- New interface for your uploaded builds
+- New upload function within your wpadmin (The build does not need to be uploaded via ssh or ftp)
+- New autostart enable disable option for the webgls
+- New shortcodes to support multiple builds
+- New shortcode paramteres: autostart, width, height
+- Option to set button and placeholder images in your canvas if autostart false
+
+* Custom js eventlistener for the developers: _unityInitialized_
+
+---
+
 1.1 - 2024.09.24
 
-* Fixed the Deactivation issue
-* Added the plugin to the update server
-* **New settings:** Set your Canvas height,width, and aspect ration
-* **New settings option:** You can enable the unfiltered files upload only for the admin for this file types: obj, gltf+json, gltf-binary, mtl
-* New Js eventlisner added when the Unity finished the initialization
+- Fixed the Deactivation issue
+- Added the plugin to the update server
+- **New settings:** Set your Canvas height,width, and aspect ration
+- **New settings option:** You can enable the unfiltered files upload only for the admin for this file types: obj, gltf+json, gltf-binary, mtl
+- New Js eventlisner added when the Unity finished the initialization
 
+---
 
 1.0
 Initial release
