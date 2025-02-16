@@ -94,8 +94,9 @@ document.addEventListener("unityInitialized", function (e) {
 - New shortcodes to support multiple builds
 - New shortcode paramteres: autostart, width, height
 - Option to set button and placeholder images in your canvas if autostart false
+- Custom js eventlistener for the developers: _unityInitialized_
 
-* Custom js eventlistener for the developers: _unityInitialized_
+- Removed the sample build
 
 ---
 
