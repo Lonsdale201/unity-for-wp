@@ -25,6 +25,9 @@ Make sure you zip the contents of your build folder directly, **not the parent f
 - **Build Management**: View all uploaded builds in the **Builds** tab under the plugin settings. You can delete or re-upload individual builds at any time.
 - **Shortcode Support**: Embed Unity builds using a simple shortcode with customizable options.
 
+![image](https://github.com/user-attachments/assets/f37aec9b-d806-4592-84b5-79cd342d3da7)
+
+
 ---
 
 ## How to Use
