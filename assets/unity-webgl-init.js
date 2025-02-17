@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Global flag to ensure loader is only loaded once.
+    if (typeof window.unityLoaderLoaded === 'undefined') {
+        window.unityLoaderLoaded = false;
+    }
+    
     var containers = document.querySelectorAll('[id^="unityContainer-"]');
     containers.forEach(function (container) {
         var canvas = container.querySelector('canvas');
@@ -34,8 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (placeholder) {
                         placeholder.style.display = 'none';
                     }
-                    // Check if the createUnityInstance function is defined; if not, load the loader script.
-                    if (typeof createUnityInstance !== 'function') {
+                    if (typeof createUnityInstance !== 'function' && !window.unityLoaderLoaded) {
+                        window.unityLoaderLoaded = true;
                         var loaderScript = document.createElement('script');
                         loaderScript.src = config.loaderUrl;
                         loaderScript.onload = function () {
@@ -76,8 +81,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Start button not found for build ID:', buildId);
             }
         } else {
-            // If autostart is true, immediately load the Unity instance.
-            if (typeof createUnityInstance !== 'function') {
+            if (typeof createUnityInstance !== 'function' && !window.unityLoaderLoaded) {
+                window.unityLoaderLoaded = true;
                 var loaderScript = document.createElement('script');
                 loaderScript.src = config.loaderUrl;
                 loaderScript.onload = function () {

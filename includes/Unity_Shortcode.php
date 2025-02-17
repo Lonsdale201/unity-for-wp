@@ -130,7 +130,7 @@ class Unity_Shortcode {
         // Generate the HTML output.
         ob_start();
         ?>
-        <div id="<?php echo esc_attr( $container_id ); ?>" style="position: relative; width: <?php echo $canvas_width; ?>; height: <?php echo $canvas_height; ?>;">
+     <div id="<?php echo esc_attr( $container_id ); ?>" data-post-id="<?php echo esc_attr( get_the_ID() ); ?>" class="unitycontainer" style="position: relative; width: <?php echo $canvas_width; ?>; height: <?php echo $canvas_height; ?>;">
             <canvas id="<?php echo esc_attr( $canvas_id ); ?>" style="width: 100%; height: 100%;"></canvas>
             <?php if ( ! $autostart ) : ?>
                 <?php if ( ! empty( $placeholder_image ) ) : ?>

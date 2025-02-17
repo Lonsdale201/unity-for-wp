@@ -28,6 +28,10 @@ class Unity_Build_Manager {
         if ( ! is_dir( $this->builds_root ) ) {
             return $builds;
         }
+        // Lekérjük a reupload és upload dátumokat
+        $reupload_dates = get_option( 'unity_build_reupload_dates', [] );
+        $upload_dates   = get_option( 'unity_build_upload_dates', [] );
+    
         $dirs = scandir( $this->builds_root );
         foreach ( $dirs as $dir ) {
             if ( $dir === '.' || $dir === '..' ) {
@@ -38,10 +42,11 @@ class Unity_Build_Manager {
                 $build_id = intval( $matches[1] );
                 $modified = filemtime( $path );
                 $builds[] = [
-                    'id'       => $build_id,
-                    'dir'      => $path,
-                    'url'      => UNITY_WEBGL_PLUGIN_URL . 'unitybuild/' . $dir,
-                    'modified' => $modified,
+                    'id'            => $build_id,
+                    'dir'           => $path,
+                    'url'           => UNITY_WEBGL_PLUGIN_URL . 'unitybuild/' . $dir,
+                    'upload_date'   => isset( $upload_dates[ $build_id ] ) ? $upload_dates[ $build_id ] : $modified,
+                    'reupload_date' => isset( $reupload_dates[ $build_id ] ) ? $reupload_dates[ $build_id ] : 0,
                 ];
             }
         }
@@ -50,6 +55,8 @@ class Unity_Build_Manager {
         } );
         return $builds;
     }
+    
+    
 
     /**
      * Returns the next available build ID.

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Unity WebGL Integration
  * Description: Integrates Unity WebGL content into WordPress using a shortcode.
- * Version: 2.0
+ * Version: 2.1
  * Author: Soczó Kristóf
  * Text Domain: unity-webgl-integration
  * Licence: GPLv2 or later
@@ -30,12 +30,15 @@ spl_autoload_register( function ( $class_name ) {
 
 require_once UNITY_WEBGL_PLUGIN_DIR . 'includes/ModelsUploader.php';
 require_once UNITY_WEBGL_PLUGIN_DIR . 'includes/Unity_Build_Manager.php';
+require_once UNITY_WEBGL_PLUGIN_DIR . 'includes/AjaxHandler.php';
 
 add_action( 'plugins_loaded', function() {
     global $wp_version;
     if ( version_compare( $wp_version, '6.0', '<' ) ) {
         wp_die( 'This plugin requires WordPress version 5.0 or higher.' );
     }
+
+    new AjaxHandler();
 
     Unity_Shortcode::get_instance();
     Unity_Settings::get_instance();

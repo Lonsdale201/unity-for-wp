@@ -1,6 +1,6 @@
 # Unity for WP
 
-Stable tag: 2.0
+Stable tag: 2.1
 
 **WordPress Plugin for Unity WebGL Projects**
 
@@ -84,6 +84,15 @@ document.addEventListener("unityInitialized", function (e) {
 - If compressed builds are not working, switch to an uncompressed version in the plugin settings.
 
 ## Changelog
+
+2.1 - 2025.02.17
+
+- New Project name column option added in the build list
+- New reuploaded date column added in the build list
+- The loader runs only once at a time
+- Automatice added current post id as attributum to canvas html element
+
+---
 
 2.0 - 2025.02.16
 
