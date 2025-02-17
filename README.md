@@ -90,7 +90,7 @@ document.addEventListener("unityInitialized", function (e) {
 - New Project name column option added in the build list
 - New reuploaded date column added in the build list
 - The loader runs only once at a time
-- Automatice added current post id as attributum to canvas html element
+- Automatice added current post id as attributum to canvas html element (data-post-id)
 
 ---
 
